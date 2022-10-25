@@ -42,89 +42,44 @@ Executar a aplicação
 node index.js
 ~~~
 
+Ao executar o terminal vai avisar que a aplicação está rodando e em seguida vai aparecer o QR code para vincular o whatsapp. Você deve scanear o QR code com o whatsapp business que deseja vincular.
 
-# Project Title  
-This is an example of an in-depth ReadMe.  
 
-## Badges  
+![zap1](https://user-images.githubusercontent.com/102566506/197662754-882943fc-2a9b-4f70-903a-913fd009d922.png)
 
-Add badges from somewhere like: [shields.io](https://shields.io/)  
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)  
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://choosealicense.com/licenses/gpl-3.0/)  
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](https://choosealicense.com/licenses/gpl-3.0/)
+Ao vinculara mensagem que o cliente está conectado será exibida.
 
-# Table of contents  
-1. [Introduction](#introduction)  
-2. [Some paragraph](#paragraph1)  
-    1. [Sub paragraph](#subparagraph1)  
-3. [Another paragraph](#paragraph2)  
+![2](https://user-images.githubusercontent.com/102566506/197663438-6ab8e08e-2972-4c86-87ee-286472c357d3.png)
 
-## Screenshots  
+Quando reiniciar o processo, o mesmo vai apresentar a mensagem que [`O cliente está rodando`], caso isso não aconteça e o vínculo foi perdido. Em caso de perda de vínculo deve apagar a pasta [`.wwebjs_auth/`] e reiniciar o processo.
 
-![App Screenshot](https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png)
+❗Não conectar em outro dispositivo via QR Code
 
-## Tech Stack  
 
-**Client:** React, Redux, TailwindCSS  
+## API
 
-**Server:** Node, Express
+#### Mostrar Diálogos(Encontrar chatId do grupo de destido)
 
-## Features  
+```http
+  GET [env.HOST]:[env.PORT]/instance[env.INSTANCE]/dialogs?token=[env.TOKEN]
+```
+Substituir [`env.*`] pelos o que foram configurados no arquivo [`.env`]
 
-- Light/dark mode toggle  
-- Live previews  
-- Fullscreen mode  
-- Cross platform 
+Ao realizar a requisição, olhar o terminal e procurar o chatId do grupo de destino no caso _serialized.
 
-## Lessons Learned  
+![3](https://user-images.githubusercontent.com/102566506/197666603-871b4987-ff50-4e60-b41d-7bd8884112c7.png)
 
-What did you learn while building this project? What challenges did you face and how did you overcome t
 
-## Run Locally  
+#### Enviar Mensagem
 
-Clone the project  
+```http
+  POST [env.HOST]:[env.PORT]/instance[env.INSTANCE]/sendMessage?token=[env.TOKEN]
+```
 
-~~~bash  
-  git clone https://link-to-project
-~~~
+| Parâmetro | Tipo     | Descrição                       |
+| :-------- | :------- | :-------------------------------- |
+| `chatId`  | `string` | **Required**. chatId do grupo |
+| `body` | `string` | **Required**. Mensagem a ser enviada |  
 
-Go to the project directory  
-
-~~~bash  
-  cd my-project
-~~~
-
-Install dependencies  
-
-~~~bash  
-npm install
-~~~
-
-Start the server  
-
-~~~bash  
-npm run start
-~~~
-
-## Environment Variables  
-
-To run this project, you will need to add the following environment variables to your .env file  
-`API_KEY`  
-
-`ANOTHER_API_KEY` 
-
-## Acknowledgements  
-
-- [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
-- [Awesome README](https://github.com/matiassingers/awesome-readme)
-- [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-
-## Feedback  
-
-If you have any feedback, please reach out to us at fake@fake.com
-
-## License  
-
-[MIT](https://choosealicense.com/licenses/mit/)
- 
- 
+# Termos
+Não utlizar para envio de spam, ou a sua alma será minha.
